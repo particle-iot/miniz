@@ -1,4 +1,7 @@
 #pragma once
+
+#include "miniz_config.h"
+
 #include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
