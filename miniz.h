@@ -163,25 +163,31 @@
 #define MINIZ_X86_OR_X64_CPU 0
 #endif
 
+#ifndef MINIZ_LITTLE_ENDIAN
 #if (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) || MINIZ_X86_OR_X64_CPU
 /* Set MINIZ_LITTLE_ENDIAN to 1 if the processor is little endian. */
 #define MINIZ_LITTLE_ENDIAN 1
 #else
 #define MINIZ_LITTLE_ENDIAN 0
 #endif
+#endif
 
+#ifndef MINIZ_USE_UNALIGNED_LOADS_AND_STORES
 #if MINIZ_X86_OR_X64_CPU
 /* Set MINIZ_USE_UNALIGNED_LOADS_AND_STORES to 1 on CPU's that permit efficient integer loads and stores from unaligned addresses. */
 #define MINIZ_USE_UNALIGNED_LOADS_AND_STORES 1
 #else
 #define MINIZ_USE_UNALIGNED_LOADS_AND_STORES 0
 #endif
+#endif
 
+#ifndef MINIZ_HAS_64BIT_REGISTERS
 #if defined(_M_X64) || defined(_WIN64) || defined(__MINGW64__) || defined(_LP64) || defined(__LP64__) || defined(__ia64__) || defined(__x86_64__)
 /* Set MINIZ_HAS_64BIT_REGISTERS to 1 if operations on 64-bit integers are reasonably fast (and don't involve compiler generated calls to helper functions). */
 #define MINIZ_HAS_64BIT_REGISTERS 1
 #else
 #define MINIZ_HAS_64BIT_REGISTERS 0
+#endif
 #endif
 
 #ifdef __cplusplus
